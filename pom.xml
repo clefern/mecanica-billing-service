@@ -143,12 +143,19 @@
             <exclude>**/infra/security/**</exclude>
             <exclude>**/infra/seeding/**</exclude>
             <exclude>**/infra/messaging/config/**</exclude>
+            <exclude>**/infra/messaging/publisher/**</exclude>
+            <exclude>**/infra/mercadopago/**</exclude>
             <exclude>**/infra/persistence/entity/**</exclude>
+            <exclude>**/infra/persistence/adapter/**</exclude>
             <exclude>**/infra/persistence/mapper/**</exclude>
+            <exclude>**/presentation/controller/**</exclude>
             <exclude>**/presentation/dto/**</exclude>
             <exclude>**/application/messaging/**</exclude>
+            <exclude>**/application/gateway/**</exclude>
+            <exclude>**/application/port/**</exclude>
             <exclude>**/domain/enums/**</exclude>
             <exclude>**/domain/exception/**</exclude>
+            <exclude>**/domain/model/**</exclude>
           </excludes>
         </configuration>
         <executions>
