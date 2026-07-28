@@ -26,6 +26,10 @@ webhook/simular → [PagamentoConfirmadoEvent | PagamentoRecusadoEvent] → os-s
 
 Swagger: `http://localhost:8081/swagger-ui.html`
 
+Collection Insomnia com o fluxo E2E completo dos 4 microsserviços:
+[`Insomnia_export.yaml`](https://github.com/clefern/mecanica-infra-ms/blob/main/mecanica-fiap/Insomnia_export.yaml)
+(repo `mecanica-infra-ms`).
+
 ## Mensagens RabbitMQ
 
 ### Consome
