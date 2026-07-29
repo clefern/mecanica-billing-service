@@ -83,6 +83,24 @@ public class BillingService {
     return pagamentoRepository.salvar(pagamento);
   }
 
+  @Transactional
+  public Orcamento aprovar(UUID orcamentoId) {
+    Orcamento orcamento = buscarPorId(orcamentoId);
+    orcamento.setStatus(StatusOrcamento.APROVADO);
+    Orcamento salvo = orcamentoRepository.salvar(orcamento);
+    log.info("[BILLING] Orçamento aprovado id={} codigo={}", salvo.getId(), salvo.getCodigo());
+    return salvo;
+  }
+
+  @Transactional
+  public Orcamento reprovar(UUID orcamentoId) {
+    Orcamento orcamento = buscarPorId(orcamentoId);
+    orcamento.setStatus(StatusOrcamento.REJEITADO);
+    Orcamento salvo = orcamentoRepository.salvar(orcamento);
+    log.info("[BILLING] Orçamento reprovado id={} codigo={}", salvo.getId(), salvo.getCodigo());
+    return salvo;
+  }
+
   @Transactional(readOnly = true)
   public Orcamento buscarPorId(UUID id) {
     return orcamentoRepository.buscarPorId(id)

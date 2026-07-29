@@ -114,6 +114,30 @@ class BillingServiceTest {
   }
 
   @Test
+  void aprovar_deveAtualizarStatusParaAprovado() {
+    UUID orcId = UUID.randomUUID();
+    Orcamento orcamento = Orcamento.builder().id(orcId).status(StatusOrcamento.GERADO).build();
+    when(orcamentoRepository.buscarPorId(orcId)).thenReturn(Optional.of(orcamento));
+    when(orcamentoRepository.salvar(any())).thenAnswer(i -> i.getArgument(0));
+
+    Orcamento resultado = billingService.aprovar(orcId);
+
+    assertThat(resultado.getStatus()).isEqualTo(StatusOrcamento.APROVADO);
+  }
+
+  @Test
+  void reprovar_deveAtualizarStatusParaRejeitado() {
+    UUID orcId = UUID.randomUUID();
+    Orcamento orcamento = Orcamento.builder().id(orcId).status(StatusOrcamento.GERADO).build();
+    when(orcamentoRepository.buscarPorId(orcId)).thenReturn(Optional.of(orcamento));
+    when(orcamentoRepository.salvar(any())).thenAnswer(i -> i.getArgument(0));
+
+    Orcamento resultado = billingService.reprovar(orcId);
+
+    assertThat(resultado.getStatus()).isEqualTo(StatusOrcamento.REJEITADO);
+  }
+
+  @Test
   void buscarPorId_orcamentoNaoEncontrado_deveLancarException() {
     UUID id = UUID.randomUUID();
     when(orcamentoRepository.buscarPorId(id)).thenReturn(Optional.empty());

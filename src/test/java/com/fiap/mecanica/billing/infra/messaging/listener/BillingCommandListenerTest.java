@@ -13,6 +13,7 @@ import com.fiap.mecanica.billing.application.messaging.OrcamentoCriadoEvent;
 import com.fiap.mecanica.billing.application.service.BillingService;
 import com.fiap.mecanica.billing.domain.model.Orcamento;
 import com.fiap.mecanica.billing.infra.messaging.publisher.BillingEventPublisher;
+import com.fiap.mecanica.billing.infra.messaging.publisher.NotificationEventPublisher;
 import com.fiap.mecanica.billing.infra.persistence.repository.ProcessedCommandJpaRepository;
 import java.math.BigDecimal;
 import java.util.List;
@@ -30,6 +31,7 @@ class BillingCommandListenerTest {
   @Mock BillingService billingService;
   @Mock MercadoPagoGateway mpGateway;
   @Mock BillingEventPublisher publisher;
+  @Mock NotificationEventPublisher notificationEventPublisher;
 
   @InjectMocks BillingCommandListener listener;
 
@@ -62,6 +64,7 @@ class BillingCommandListenerTest {
     verify(publisher).publicar(argThat((OrcamentoCriadoEvent e) ->
         e.sagaId().equals(sagaId) && e.osId().equals(osId) && e.orcamentoId().equals(orcId)));
     verify(publisher, never()).publicar(any(FalhaNoBillingEvent.class));
+    verify(notificationEventPublisher).publicar(argThat(e -> e.orcamentoId().equals(orcId)));
   }
 
   @Test

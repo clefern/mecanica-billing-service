@@ -69,3 +69,6 @@ mecanica:
   orcamento:
     taxa-impostos: ${TAXA_IMPOSTOS:0.05}
     validade-dias: ${ORCAMENTO_VALIDADE_DIAS:30}
+  mail:
+    action-token-secret: ${ACTION_TOKEN_SECRET:0Yvtb2EXkwmzs6xCSaVt3adG93Xm0T3zHtXX}
+    action-token-expiry-minutes: ${ACTION_TOKEN_EXPIRY_MINUTES:1440}

@@ -84,6 +84,20 @@ public class RabbitMqConfig {
     return BindingBuilder.bind(filaPagamentoRecusado).to(mecanicaExchange).with(RK_PAGAMENTO_RECUSADO);
   }
 
+  // Notification — fila paralela, não afeta o fluxo da saga
+  public static final String QUEUE_NOTIFICATION_ORCAMENTO_GERADO = "mecanica.notification.orcamento-gerado";
+  public static final String RK_NOTIFICATION_ORCAMENTO_GERADO = "notification.orcamento-gerado";
+
+  @Bean
+  Queue filaNotificationOrcamentoGerado() {
+    return QueueBuilder.durable(QUEUE_NOTIFICATION_ORCAMENTO_GERADO).build();
+  }
+
+  @Bean
+  Binding bindingNotificationOrcamentoGerado(Queue filaNotificationOrcamentoGerado, DirectExchange mecanicaExchange) {
+    return BindingBuilder.bind(filaNotificationOrcamentoGerado).to(mecanicaExchange).with(RK_NOTIFICATION_ORCAMENTO_GERADO);
+  }
+
   @Bean
   Jackson2JsonMessageConverter messageConverter(ObjectMapper objectMapper) {
     return new Jackson2JsonMessageConverter(objectMapper);

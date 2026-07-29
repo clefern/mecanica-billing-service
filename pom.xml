@@ -100,7 +100,7 @@
     <dependency>
       <groupId>com.fiap.mecanica</groupId>
       <artifactId>mecanica-shared-kernel</artifactId>
-      <version>0.1.0</version>
+      <version>0.2.0</version>
     </dependency>
     <!-- Observability/Logs/Telemetry -->
     <dependency>

@@ -28,7 +28,8 @@ public class SecurityConfig {
                 "/v3/api-docs/**",
                 "/swagger-ui/**",
                 "/swagger-ui.html",
-                "/api/billing/webhooks/**")
+                "/api/billing/webhooks/**",
+                "/api/billing/integracoes/orcamentos/aprovacao")
             .permitAll()
             .anyRequest().authenticated())
         .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
